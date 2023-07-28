@@ -1,0 +1,21 @@
+<div class="dialog-container">
+    <span class="close-icon" (click)="closeDialog()">&times;</span>
+    <h2>Task Details</h2>
+    <div>
+      <!-- <p><strong>Id:</strong> {{ task._id }}</p> -->
+      <p><strong>Title:</strong> {{ task.title }}</p>
+      <p><strong>Description:</strong> {{ task.description }}</p>
+      <p><strong>Due Date:</strong> {{ task.dueDate }}</p>
+      <p><strong>Priority:</strong> {{ task.priority }}</p>
+      <p><strong>Status:</strong> {{ task.status }}</p>
+    </div>
+    <div *ngIf="task.history && task.history.length > 0">
+      <h3>History Log</h3>
+      <ul>
+        <li *ngFor="let log of task.history">
+          {{ log.date  }} - {{ log.description }}
+        </li>
+      </ul>
+    </div>
+  </div>
+  

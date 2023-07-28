@@ -1,0 +1,202 @@
+/* Add a gradient background to the container */
+.container {
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #f8f8f8;
+    background-image: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    border-radius: 10px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    overflow: auto;
+  }
+  
+  /* Style the header */
+  .header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+    color: #fff;
+  }
+  
+  .header h2 {
+    font-size: 24px;
+    font-weight: bold;
+  }
+  
+  /* Style the sort dropdown */
+  .sort {
+    display: flex;
+    align-items: center;
+  }
+  
+  .sort label {
+    margin-right: 10px;
+    font-size: 16px;
+    font-weight: bold;
+  }
+  
+  .sort select {
+    padding: 5px 10px;
+    border-radius: 5px;
+    background-color: #fff;
+    color: #333;
+    font-size: 14px;
+  }
+  
+  /* Style the table */
+  .table-container {
+    overflow-y: auto;
+  max-height: 400px; 
+  }
+  
+  .table {
+    overflow: auto;
+    width: 100%;
+    border-collapse: collapse;
+    background-color: #fff;
+    border-radius: 10px;
+    text-align: center; 
+    /* display: flex; */
+    /* justify-content: center;  */
+  }
+  
+  .table th,
+  .table td {
+    padding: 12px;
+    border: 1px solid #ccc;
+    font-size: 14px;
+    /* Center all content in table cells */
+  }
+  
+  .table th {
+    background-color: #f0f0f0;
+    font-weight: bold;
+    text-transform: uppercase;
+  }
+  
+  .table tbody tr:hover {
+    background-color: #f0f0f0;
+  }
+  
+  /* Style the action row */
+  #task-action {
+    min-width: 180px;
+     /* Set the desired minimum width for the action row */
+  }
+  
+  /* Style the buttons within the action row */
+  .btn-group {
+    /* max-width: 150px; */
+    display: flex;
+    /* justify-content: flex-end; Align buttons to the right within the action row */
+  }
+  
+  .primary-btn,
+  .success-btn,
+  .danger-btn {
+    padding: 4px 8px;
+    margin-right: 10px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 14px;
+    text-transform: uppercase;
+    transition: background-color 0.2s ease;
+  }
+  
+  .primary-btn {
+    background-color: #007bff;
+    color: #fff;
+  }
+  
+  .success-btn {
+    background-color: #28a745;
+    color: #fff;
+  }
+  
+  .danger-btn {
+    background-color: #dc3545;
+    color: #fff;
+  }
+  
+  .export-btn {
+    margin-top: 20px;
+    padding: 10px 20px;
+    border-radius: 5px;
+    background-color: #ff6b6b;
+    color: #fff;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+  }
+  
+  .export-btn:hover {
+    background-color: #ed4949;
+  }
+  
+  td i,
+  a {
+    cursor: pointer;
+  }
+  
+  #noTasks {
+    justify-content: center;
+    flex-direction: row;
+    align-items: center;
+    font-size: 18px;
+    color: #888;
+    margin: 0% 40%;
+  }
+  
+  @media (max-width: 767px) {
+    .table-container table .desktop {
+      display: none;
+    }
+  }
+  
+  /* ... Existing CSS code ... */
+
+/* Media query for responsiveness */
+@media (max-width: 500px) {
+  .table th,
+  .table td {
+    font-size: 12px; /* Reduce font size for smaller screens */
+    padding: 8px; /* Reduce padding for smaller screens */
+  }
+
+  #task-action {
+    min-width: auto;
+     /* Set the desired minimum width for the action row */
+  }
+  
+  /* Additional styles for smaller screens */
+  .header h2 {
+    font-size: 20px; /* Reduce header font size for smaller screens */
+  }
+  
+  .sort label {
+    font-size: 14px; /* Reduce sort label font size for smaller screens */
+  }
+
+  .btn-group {
+    display: flex;
+    flex-direction: column;
+    /* align-items: center; */
+  }
+
+  .export-btn {
+    margin-top: 10px;
+    padding: 5px 10px;
+    border-radius: 2px;
+    font-size: 10px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+  }
+  .btn{
+    font-size: 10px;
+  }
+  
+ 
+}

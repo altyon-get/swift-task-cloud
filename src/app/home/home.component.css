@@ -1,0 +1,20 @@
+.main{
+    /* display: flex; */
+}
+#addTask{
+    /* float: right; */
+    background-color: white;
+    /* border: 1px black solid; */
+    width: auto;
+    /* width: 420px; */
+}
+#tasks{ 
+    /* border: 1px black solid; */
+    /* width: 100%; */
+    background-color: white;
+    /* float: left; */
+    /* text-align: center; */
+    /* padding: 20px; */
+    /* margin-top: 70px; */
+    box-shadow: 2px 8px 8px 4px rgb(91, 86, 94);
+}

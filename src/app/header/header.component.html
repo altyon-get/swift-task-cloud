@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <!-- Add Bootstrap CSS -->
+    <link
+      rel="stylesheet"
+      href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+    />
+
+    <!-- Add Font Awesome for icons -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
+    />
+
+    <!-- Add custom CSS for header styles -->
+    <style>
+      header {
+        /* background-color: #00425A; */
+        background-image: linear-gradient(135deg, #667eea 100%, #764ba2 0%);
+        padding: 15px;
+        color: #ffffff;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+
+      .title-container {
+        text-align: left;
+      }
+
+      h2 {
+        color: black;
+      }
+
+      .coins-container {
+        text-align: right;
+        position: relative;
+      }
+
+      .coins-label,
+      .redeem-button {
+        margin: 5px;
+        padding: 5px 10px;
+        border-radius: 5px;
+        font-size: 16px;
+        font-weight: bold;
+      }
+
+      .coins-label {
+        background-color: #f99417;
+        color: #ffffff;
+      }
+
+      .redeem-button {
+        background-color: #ff6b6b;
+        color: #ffffff;
+        border: none;
+        cursor: pointer;
+        margin-left: 10px;
+        transition: background-color 0.2s ease;
+      }
+
+      .redeem-button:hover {
+        background-color: #ed4949;
+        color: black;
+      }
+    </style>
+  </head>
+
+  <body>
+    <header>
+      <div class="title-container">
+        <h2>{{ title }}</h2>
+        <h5>{{ subtitle }}</h5>
+      </div>
+
+      <div class="coins-container">
+        <span class="coins-label">
+          {{ coins }} <i class="fas fa-coins"></i
+        ></span>
+        <button
+          *ngIf="page == 'home'"
+          routerLink="/rewards"
+          class="redeem-button"
+          (click)="switchPage()"
+        >
+          Redeem
+        </button>
+        <button
+          *ngIf="page == 'rewards'"
+          routerLink="/"
+          class="redeem-button"
+          (click)="switchPage()"
+        >
+          Go Back
+        </button>
+      </div>
+    </header>
+
+    <!-- Add Bootstrap JS and jQuery -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+  </body>
+</html>

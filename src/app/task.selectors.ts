@@ -7,3 +7,8 @@ export const selectTasks = createSelector(
   selectTaskState,
   (state: TaskState) => state.tasks
 );
+
+export const selectCoins = createSelector(
+  selectTaskState,
+  (state: TaskState) => state.coins
+);

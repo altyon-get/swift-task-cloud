@@ -1,11 +1,5 @@
-// export interface Task {
-//     id: number;
-//     name: string;
-//     description: string;
-//   }
-  
 export interface Task {
-    id: number;
+    _id: number;
     title: string;
     description: string;
     dueDate: Date;

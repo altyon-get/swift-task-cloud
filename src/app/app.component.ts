@@ -6,10 +6,9 @@ import { Subscription } from 'rxjs';
 @Component({
   selector: 'app-root',
   template: `
-    <div>
-      <app-add-task></app-add-task>
-      <app-display-task></app-display-task>
-    </div>
+    <app-header></app-header>
+    <router-outlet></router-outlet>
+    <app-footer></app-footer>
   `
 })
 export class AppComponent implements OnDestroy {

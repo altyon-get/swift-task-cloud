@@ -1,0 +1,60 @@
+<div class="dialog-container">
+  <span class="close-icon" (click)="closeDialog()">&times;</span>
+  <div>
+    <div class="container">
+      <h2>{{ isEditing ? "Edit Task" : "Add Task" }}</h2>
+      <!-- Your existing template -->
+<form class="add-form" (submit)="onFormSubmit()" [formGroup]="taskForm">
+  <!-- Task Title Input -->
+  <div class="form-group">
+    <label for="text">Task</label>
+    <input
+      type="text"
+      formControlName="title"
+      placeholder="Task Title"
+      class="form-control"
+    />
+  </div>
+
+  <!-- Task Description Input -->
+  <div class="form-group">
+    <label for="day">Description</label>
+    <input
+      type="text"
+      formControlName="description"
+      placeholder="Task Description"
+      class="form-control"
+    />
+  </div>
+
+  <!-- Due Date Input -->
+  <div class="form-group">
+    <label for="day">Day & Time</label>
+    <input
+      type="date"
+      formControlName="dueDate"
+      class="form-control"
+    />
+  </div>
+
+  <!-- Priority Select -->
+  <div class="form-group">
+    <label>Set Priority</label>
+    <select
+      formControlName="priority"
+      class="form-control"
+    >
+      <option value="low">Low</option>
+      <option value="medium">Medium</option>
+      <option value="high">High</option>
+    </select>
+  </div>
+
+  <button type="submit" class="btn btn-primary btn-block">
+    {{ isEditing ? "Save Changes" : "Add Task" }}
+  </button>
+</form>
+
+    </div>
+  </div>
+</div>
