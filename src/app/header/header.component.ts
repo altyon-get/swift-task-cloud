@@ -20,24 +20,6 @@ export class HeaderComponent implements OnInit {
 
   ngOnInit() {
     this.coins$ = this.store.select(selectCoins);
-    // Load coins
-    this.taskService.getCurrentCoins().subscribe(
-      (response: { coins: number }) => {
-        const coins = response.coins;
-        console.log('coins', coins);
-        this.store.dispatch(loadAllCoins({ coins }));
-
-        this.coins$ = this.store.select(selectCoins);
-        this.coins$.subscribe((coins) => {
-          console.log(coins,' -XXX')
-          if(coins) this.coins = coins;
-        });
-      },
-      (error) => {
-        console.error('Error loading coins:', error);
-        // Handle the error, show a toast message, etc.
-      }
-    );
   }
 
   switchPage() {

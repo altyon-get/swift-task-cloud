@@ -6,12 +6,13 @@ import {
   loadAllTasks,
   incrementCoins,
   loadAllCoins,
+  loadAllTasksAndCoins,
 } from './../task.actions';
 import { Component, OnInit } from '@angular/core';
 import { Observable, combineLatest, forkJoin } from 'rxjs';
 import { Store, select } from '@ngrx/store';
 import { TaskService } from '../task.service';
-import { selectTasks } from '../task.selectors';
+import { selectCoins, selectTasks } from '../task.selectors';
 import { DisplayTaskDetailsComponent } from '../display-task-details/display-task-details.component';
 import {
   MatDialog,
@@ -48,6 +49,7 @@ import { AddTaskDialogComponent } from '../add-task-dialog/add-task-dialog.compo
 })
 export class DisplayTaskComponent implements OnInit {
   tasks$: Observable<Task[]> | undefined;
+  coins$: Observable<number> | undefined;
   tasks: Task[] = [];
   sortedTasks: Task[] = [];
   sortType: string = 'none';
@@ -59,23 +61,34 @@ export class DisplayTaskComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.taskService.getAllTasks().subscribe(
-      (tasks: Task[]) => {
-        this.store.dispatch(loadAllTasks({ tasks }));
-        console.log('task', tasks);
+    this.taskService.getAllTasksWithCoins().subscribe(
+      (data ) => {
+        const tasks = data.tasks;
+        const coins = data.amount; // Extract the 'coins' property from the array
+        // console.log('data:', data);
+        // console.log('tasks:', tasks);
+        // console.log('coins:', coins);
+        // this.store.dispatch(loadAllTasks({ tasks }) | loadAllCoins({ coins }));
+        this.store.dispatch(loadAllTasksAndCoins({ tasks, coins }));
+        // console.log('Both actions dispatched successfully.');
+        // const coins = coinsData.coins; // Extract the 'coins' property from the array
+        // this.store.dispatch(loadAllTasks({ tasks }));
+        // this.store.dispatch(loadAllCoins({ coins }));
+        // console.log('tasks:', tasks);
         this.tasks$ = this.store.pipe(select(selectTasks));
         this.tasks$.subscribe((tasks) => {
           this.tasks = tasks || [];
           this.sortedTasks = tasks || []; // Update sortedTasks with the same data
           this.sortTasks();
         });
+        // this.coins = coins; // Assign the coins value to the component property
       },
       (error) => {
         console.error('Error loading tasks:', error);
         // Handle the error, show a toast message, etc.
       }
     );
-   
+    
   }
 
   sortTasks() {
@@ -128,6 +141,7 @@ export class DisplayTaskComponent implements OnInit {
     this.taskService.deleteTaskFromStore(task._id).subscribe(
       (deletedTasks) => {
         // On successful update, dispatch an action to update the store
+        // console.log(deletedTasks, 'xxx');
         this.store.dispatch(deleteTask({ _id: deletedTasks._id }));
       },
       (error) => {
@@ -170,9 +184,18 @@ export class DisplayTaskComponent implements OnInit {
   onComplete(task: Task) {
     const updatedTask: Task = { ...task, status: 'completed' };
     this.updateHistory(updatedTask, 'Status changed to Completed');
-    this.taskService.incrementCoinsInStore(10).subscribe(
+
+    const amount=this.store.pipe(select(selectCoins));
+    let currCoin:number=0;;
+    amount.subscribe(
+      (x)=>{
+        currCoin=x;
+      }
+    )
+    this.taskService.incrementCoinsInStore(currCoin+10).subscribe(
       (updateCoin) => {
         // On successful update, dispatch an action to update the store
+        // console.log('incrementing on complete',updateCoin);
         this.store.dispatch(incrementCoins({ amount: 10 }));
       },
       (error) => {
@@ -180,6 +203,7 @@ export class DisplayTaskComponent implements OnInit {
         // Handle the error, show a toast message, etc.
       }
     ); // Increment coins by 10 (you can use any desired amount)
+   
   }
 
   onTaskSelected(task: Task) {

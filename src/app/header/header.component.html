@@ -77,7 +77,7 @@
 
       <div class="coins-container">
         <span class="coins-label">
-          {{ coins }} <i class="fas fa-coins"></i
+          {{ coins$ | async }} <i class="fas fa-coins"></i
         ></span>
         <button
           *ngIf="page == 'home'"

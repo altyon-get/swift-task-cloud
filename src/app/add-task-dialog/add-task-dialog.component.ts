@@ -102,8 +102,8 @@ export class AddTaskDialogComponent {
       updatedTask.history = this.data.task.history;
       this.updateHistory(updatedTask, 'Edited');
       // console.log(updatedTask);
-      // this.clearForm();
-      // this.closeDialog();
+      this.clearForm();
+      this.closeDialog();
     } else {
       if (this.taskForm.valid) {
         const newTask: Task = this.taskForm.value;
@@ -113,7 +113,7 @@ export class AddTaskDialogComponent {
         ];
         this.taskService.addTaskToStore({ ...newTask }).subscribe(
           (response: Task) => {
-            console.log('Task added successfully:', response);
+            // console.log('Task added successfully:', response);
             // Optionally, you can update your local tasks array with the newly added task.
             this.store.dispatch(addTask({ task: response }));
           },
@@ -122,7 +122,7 @@ export class AddTaskDialogComponent {
             // Handle the error, show a toast message, etc.
           }
         );
-        // this.clearForm();
+        this.clearForm();
       }
     }
   }

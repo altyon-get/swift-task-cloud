@@ -1,7 +1,7 @@
 // task.reducer.ts
 import { createReducer, on, Action } from '@ngrx/store';
 import { Task } from './task.model';
-import { addTask, updateTask, deleteTask, incrementCoins, loadAllTasks, loadAllCoins } from './task.actions';
+import { addTask, updateTask, deleteTask, incrementCoins, loadAllTasks, loadAllCoins, loadAllTasksAndCoins } from './task.actions';
 
 export interface TaskState {
   tasks: Task[];
@@ -39,7 +39,6 @@ const taskReducer = createReducer(
       // If 'amount' is not a number or NaN, assign 10 as the default value
       amount = 10;
     }
-  
     // Perform the increment operation
     return {
       ...state,
@@ -47,14 +46,9 @@ const taskReducer = createReducer(
     };
   }),
 
-  on(loadAllTasks, (state, { tasks }) => {
-    // Replace the existing tasks with the new tasks from the action payload
-    return { ...state, tasks: tasks };
-  }),
-  
-  on(loadAllCoins, (state, { coins }) => {
-    // Replace the existing tasks with the new tasks from the action payload
-    return { ...state, coins: coins };
+  on(loadAllTasksAndCoins, (state, { tasks, coins }) => {
+    // loading data from backend
+    return { ...state, tasks: tasks, coins: coins };
   })
   
 

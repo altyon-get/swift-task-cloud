@@ -9,20 +9,17 @@ import { Task } from './task.model';
 })
 export class TaskService {
 
-  private apiUrl = 'http://localhost:8800/api/tasks';
-  private coinsUrl = 'http://localhost:8800/api/coins'; // New URL for coins
+  private apiUrl = 'https://swift-task-server.onrender.com/api/tasks';
+  private coinsUrl = 'https://swift-task-server.onrender.com/api/coins'; // New URL for coins
 
 
   constructor(private http: HttpClient) { }
 
-  getAllTasks(): Observable<Task[]> {
-    // console.log('getting all task');
-    return this.http.get<Task[]>(this.apiUrl);
-  }
 
-  getCurrentCoins(): Observable<{ coins: number }> {
-    return this.http.get<{ coins: number }>(this.coinsUrl);
+  getAllTasksWithCoins(): Observable<{ tasks: Task[], amount: number }> {
+    return this.http.get<{ tasks: Task[], amount: number }>(this.apiUrl);
   }
+  
   
   addTaskToStore(task: Task): Observable<Task> {
     // console.log('adding task');
