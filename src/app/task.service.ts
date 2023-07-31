@@ -9,8 +9,8 @@ import { Task } from './task.model';
 })
 export class TaskService {
 
-  private apiUrl = 'https://swift-task-server.onrender.com/api/tasks';
-  private coinsUrl = 'https://swift-task-server.onrender.com/api/coins'; // New URL for coins
+  private apiUrl = 'http://localhost:8800/api/tasks';
+  private coinsUrl = 'http://localhost:8800/api/coins'; // New URL for coins
 
 
   constructor(private http: HttpClient) { }

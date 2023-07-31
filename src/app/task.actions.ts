@@ -12,7 +12,7 @@ export const loadAllCoins = createAction('[Task] Load All Tasks', props<{ coins:
 
 //after finding out only 1 is getting dispatched and then dislpay tasks, only able to get either data or tasks
 export interface LoadAllTasksAndCoinsPayload {
-    tasks: Task[]; // Assuming you have a Task type defined for tasks
+    tasks: Task[];
     coins: number;
   }  
 export const loadAllTasksAndCoins = createAction(

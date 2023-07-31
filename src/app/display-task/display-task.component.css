@@ -155,34 +155,33 @@
     }
   }
   
-  /* ... Existing CSS code ... */
 
 /* Media query for responsiveness */
 @media (max-width: 500px) {
   .table th,
   .table td {
-    font-size: 12px; /* Reduce font size for smaller screens */
-    padding: 8px; /* Reduce padding for smaller screens */
+    font-size: 12px; 
+    padding: 8px; 
   }
 
   #task-action {
     min-width: auto;
-     /* Set the desired minimum width for the action row */
+   
   }
   
-  /* Additional styles for smaller screens */
+  
   .header h2 {
-    font-size: 20px; /* Reduce header font size for smaller screens */
+    font-size: 20px; 
   }
   
   .sort label {
-    font-size: 14px; /* Reduce sort label font size for smaller screens */
+    font-size: 14px; 
   }
 
   .btn-group {
     display: flex;
     flex-direction: column;
-    /* align-items: center; */
+    
   }
 
   .export-btn {

@@ -20,9 +20,7 @@
     cursor: pointer;
   }
   
-  /* Add styles for the dialog content here if needed */
-  
-  /* Add CSS to handle the animation */
+/* Add CSS to handle the animation */
 .animated {
   animation: fadeInOut 100ms;
 }

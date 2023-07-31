@@ -5,6 +5,6 @@ export interface Task {
     dueDate: Date;
     priority: string; // 'low', 'medium', or 'high'
     status: string; // 'to-do', 'in-progress', or 'completed'
-    history: any[]; // You can define a custom history object to track changes
+    history: any[]; // 
 }
   

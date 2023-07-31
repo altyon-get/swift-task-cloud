@@ -72,7 +72,6 @@ export class AddTaskDialogComponent {
     });
     this.isEditing = this.data.isEdit;
     if (this.data.task) {
-      // Patch the form values with the data from the task (if available)
       this.taskForm.patchValue(this.data.task);
       this.editTaskId = this.data.task._id;
     }
@@ -96,7 +95,6 @@ export class AddTaskDialogComponent {
 
   onFormSubmit(): void {
     if (this.isEditing) {
-      // Get the updated task data from the form
       const updatedTask: Task = this.taskForm.value;
       updatedTask._id = this.data.task._id;
       updatedTask.history = this.data.task.history;
@@ -107,19 +105,20 @@ export class AddTaskDialogComponent {
     } else {
       if (this.taskForm.valid) {
         const newTask: Task = this.taskForm.value;
+        newTask.description = '';
         newTask.status = 'to-do';
         newTask.history = [
           { date: this.formatDate(new Date()), description: 'Created' },
         ];
+        console.log('adding',newTask);
         this.taskService.addTaskToStore({ ...newTask }).subscribe(
           (response: Task) => {
             // console.log('Task added successfully:', response);
-            // Optionally, you can update your local tasks array with the newly added task.
             this.store.dispatch(addTask({ task: response }));
           },
           (error) => {
             console.error('Error adding task:', error);
-            // Handle the error, show a toast message, etc.
+            // TODO: will add toast message.
           }
         );
         this.clearForm();
@@ -153,8 +152,8 @@ export class AddTaskDialogComponent {
       const minutes = String(date.getMinutes()).padStart(2, '0');
       return `${year}-${month}-${day} ${hours}:${minutes}`;
     } else if (typeof date === 'string') {
-      // In case 'date' is a string, parse it to a Date object
       const parsedDate = new Date(date);
+      //  parse it to a Date object
       if (!isNaN(parsedDate.getTime())) {
         const year = String(parsedDate.getFullYear());
         const month = String(parsedDate.getMonth() + 1).padStart(2, '0');
@@ -165,7 +164,7 @@ export class AddTaskDialogComponent {
       }
     }
 
-    // Return an empty string if 'date' is not valid
+
     return '';
   }
   closeDialog(): void {
